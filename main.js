@@ -6,7 +6,7 @@ let d = {
 }  
 function incNum1() {
     d.Num1 += d.Num1pc;
-    document.getElementById("Num1").innerHTML = Num1 + "Num1";
+    document.getElementById("Num1").innerHTML = d.Num1 + " Num1";
 }
 function buyu1() {
     if(d.Num1 >= d.u1c) {
