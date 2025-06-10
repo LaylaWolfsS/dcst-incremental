@@ -6,17 +6,17 @@ let d = {
 }  
 function incNum1() {
     d.Num1 += d.Num1pc;
-    document.getElementById("Num1").innerHTML = d.Num1 + " Num1";
+    document.getElementById("Num1").innerHTML = round(d.Num1) + " Num1";
 }
 function buyu1() {
     if(d.Num1 >= d.u1c) {
-        d.Num1 -= d.u1c;
-        d.Num1pc *= 1.1;
-        d.u1c *= 1.2;
-        d.u1++;
-        document.getElementById("u1a").innerHTML = "Level " + d.u1;
-        document.getElementById("Num1").innerHTML = d.Num1 + " Num1";
-        document.getElementById("u1").innerHTML = "Accelerate Num1 (Currently " + d.Num1pc + "/click) Cost:" + d.u1c + "Num1";
+        d.Num1 -= parseFloat(d.u1c.toFixed(2));
+        d.Num1pc = parseFloat((d.Num1pc*1.1).toFixed(2));
+        d.u1c = parseFloat((d.u1c*1.2).toFixed(2));
+        d.u1 = parseFloat((d.u1 + 1).toFixed(2));
+        document.getElementById("u1a").innerHTML = "Level " + round(d.u1);
+        document.getElementById("Num1").innerHTML = round(d.Num1) + " Num1";
+        document.getElementById("u1").innerHTML = "Accelerate Num1 (Currently " + round(d.Num1pc) + "/click) Cost:" + round(d.u1c) + "Num1";
     }
 }
 var loop = window.setInterval(function() {
