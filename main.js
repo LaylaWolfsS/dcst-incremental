@@ -1,8 +1,8 @@
 let d = {
     Num1: 0,
-    Num1pc: 0,
+    Num1pc: 1,
     u1: 0,
-    u1c: 0,
+    u1c: 10,
 }  
 function incNum1() {
     d.Num1 += d.Num1pc;
