@@ -6,7 +6,7 @@ let d = {
 }  
 function incNum1() {
     d.Num1 += d.Num1pc;
-    document.getElementById("Num1").innerHTML = Num1.toFixed(2) + "Num1";
+    document.getElementById("Num1").innerHTML = Num1 + "Num1";
 }
 function buyu1() {
     if(Num1 >= u1c) {
@@ -14,9 +14,9 @@ function buyu1() {
         d.Num1pc *= 1.1;
         d.u1c *= 1.2;
         d.u1++;
-        document.getElementById("u1a").innerHTML = "Level " + d.u1.toFixed(2);
-        document.getElementById("Num1").innerHTML = d.Num1.toFixed(2) + " Num1";
-        document.getElementById("u1").innerHTML = "Accelerate Num1 (Currently " + d.Num1pc.toFixed(2) + "/click) Cost:" + d.u1c.toFixed(2) + "Num1";
+        document.getElementById("u1a").innerHTML = "Level " + d.u1;
+        document.getElementById("Num1").innerHTML = d.Num1 + " Num1";
+        document.getElementById("u1").innerHTML = "Accelerate Num1 (Currently " + d.Num1pc + "/click) Cost:" + d.u1c + "Num1";
     }
 }
 var loop = window.setInterval(function() {
