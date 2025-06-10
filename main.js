@@ -23,9 +23,9 @@ var loop = window.setInterval(function() {
     incNum1();
 }, 1000);
 var saveloop = window.setInterval(function() {
-    localStorage.setItem("Data", JSON.stringify(Data));
+    localStorage.setItem("Data", JSON.stringify(d));
 }, 20000);
 var save = JSON.parse(localStorage.getItem("Data"));
 if(save !== null) {
-    Data = save;
+    d = save;
 }
