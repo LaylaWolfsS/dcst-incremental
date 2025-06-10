@@ -9,7 +9,7 @@ function incNum1() {
     document.getElementById("Num1").innerHTML = Num1 + "Num1";
 }
 function buyu1() {
-    if(Num1 >= u1c) {
+    if(d.Num1 >= d.u1c) {
         d.Num1 -= d.u1c;
         d.Num1pc *= 1.1;
         d.u1c *= 1.2;
