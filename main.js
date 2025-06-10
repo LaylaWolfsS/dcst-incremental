@@ -1,22 +1,22 @@
-var Data = {
-    Num1: new Decimal(0),
-    Num1pc: new Decimal(1),
-    u1: new Decimal(1),
-    u1c: new Decimal(10)
-}
+let d = {
+    Num1: 0,
+    Num1pc: 0,
+    u1: 0,
+    u1c: 0,
+}  
 function incNum1() {
-    Data.Num1 += Data.Num1pc;
-    document.getElementById("Num1").innerHTML = Data.Num1 + "Num1";
+    d.Num1 += d.Num1pc;
+    document.getElementById("Num1").innerHTML = Num1 + "Num1";
 }
 function buyu1() {
-    if(Data.Num1 >= Data.u1c) {
-        Data.Num1 -= Data.u1c;
-        Data.Num1pc = Data.Num1pc.times(1.1);
-        Data.u1c = Data.u1c.times(1.2);
-        Data.u1 = Data.u1.plus(1);
-        document.getElementById("u1a").innerHTML = "Level " + Data.u1;
-        document.getElementById("Num1").innerHTML = Data.Num1 + "Num1";
-        document.getElementById("u1").innerHTML = "Accelerate Num1 (Currently " + Data.Num1pc + "/click) Cost:" + Data.u1c + "Num1";
+    if(Num1 >= u1c) {
+        d.Num1 = d.Num1.minus(u1c).toFixed(2);
+        d.Num1pc = d.Num1pc.times(1.1).toFixed(2);
+        d.u1c = d.u1c.times(1.2).toFixed(2);
+        d.u1 = d.u1.plus(1).toFixed(2);
+        document.getElementById("u1a").innerHTML = "Level " + d.u1;
+        document.getElementById("Num1").innerHTML = d.Num1 + "Num1";
+        document.getElementById("u1").innerHTML = "Accelerate Num1 (Currently " + d.Num1pc + "/click) Cost:" + d.u1c + "Num1";
     }
 }
 var loop = window.setInterval(function() {
