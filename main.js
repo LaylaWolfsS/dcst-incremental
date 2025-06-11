@@ -40,7 +40,7 @@ function buyu2() {
     }
 }
 var effectloop = window.setInterval(function() {
-    d.Num1pc = parseFloat(Math.pow(d.u1e,d.u1));
+    d.Num1pc = parseFloat(Math.pow(d.u1e,d.u1).toFixed(3));
 }, 50);
 var loop = window.setInterval(function() {
     incNum1();
