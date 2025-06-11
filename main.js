@@ -10,16 +10,27 @@ let d = {
     u1: 0,
     u1c: c[0],
     u1e: 1.1,
+    u1r: 1.15,
     u2: 0,
     u2c: c[1],
     u2e: 0,
     u2s: s[0],
-    p: 0,
+    u3: 0,
+    u3c: c[2],
+    u3e: 1,
+    u3s: s[1],
+    p: 0
 }  
 var effectloop = window.setInterval(function() {
     d.Num1pc = Math.pow(d.u1e,d.u1);
+    d.u1c = 10*Math.pow(d.u1r,d.u1);
 }, 50);
 var showloop = window.setInterval(function() {
+    switch(p) {
+        case 0: s[0] = false; break;
+        case 1: s[0] = true; s[1] = false; break;
+        case 2: s[0] = true; s[1] = true; break;
+    }
     for (let si = 0; si < s.length; si++) {
         if (s[si] == true) {
             document.getElementById("u" + (si + 2)).style.display = "block";
@@ -36,9 +47,9 @@ function incNum1() {
 function buyu1() {
     if(d.Num1 >= d.u1c) {
         d.Num1 -= d.u1c;
-        d.u1c *= 1.15;
+        d.u1c *= d.u1r;
         d.u1 += 1;
-        if(s[0] == false) s[0]=true;
+        if(p <= 1) p = 1;
     }
 }
 function buyu2() {
@@ -46,17 +57,26 @@ function buyu2() {
         d.Num1 -= parseFloat(d.u2c.toFixed(3));
         d.u2c *= 2;
         d.u2 += 1;
-        d.u1e += 0.002;
-        d.u2e += 0.002;
+        d.u1e += 0.004;
+        d.u2e += 0.004;
+        if(p <= 2) p = 2;
+    }
+}
+function buyu3() {
+    if(d.Num1 >= d.u3c) {
+        d.Num1 -= parseFloat(d.u3c.toFixed(3));
+        d.u3c *= 2;
+        d.u3 += 1;
+        d.u1c /= 2;
     }
 }
 var loop = window.setInterval(function() {
     incNum1();
     document.getElementById("Num1").innerHTML = parseFloat(d.Num1.toFixed(3)) + " Num1";
     document.getElementById("u1a").innerHTML = "Level " + parseFloat(d.u1.toFixed(3));
-    document.getElementById("u1").innerHTML = "Multiply Num1 gain by " + parseFloat(d.u1e.toFixed(3)) + " (Currently " + parseFloat(d.Num1pc.toFixed(3)) + "/click) Cost:" + parseFloat(d.u1c.toFixed(3)) + "Num1";
+    document.getElementById("u1").innerHTML = "Multiply Num1 gain by " + parseFloat(d.u1e.toFixed(3)) + " (Currently " + parseFloat(d.Num1pc.toFixed(3)) + "/click) Cost: " + parseFloat(d.u1c.toFixed(3)) + " Num1";
     document.getElementById("u2a").innerHTML = "Level " + parseFloat(d.u2.toFixed(3));
-    document.getElementById("u2").innerHTML = "Add 0.002 to the base of the first upgrade (Currently +" + parseFloat(d.u2e.toFixed(3)) + ") Cost:" + parseFloat(d.u2c.toFixed(3)) + "Num1";
+    document.getElementById("u2").innerHTML = "Add 0.004 to the base of the first upgrade (Currently +" + parseFloat(d.u2e.toFixed(3)) + ") Cost: " + parseFloat(d.u2c.toFixed(3)) + " Num1";
 }, 50);
 var saveloop = window.setInterval(function() {
     localStorage.setItem("Data", JSON.stringify(d));
