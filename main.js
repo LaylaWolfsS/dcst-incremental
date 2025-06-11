@@ -14,20 +14,20 @@ let d = {
     u2e: 0
 }  
 var effectloop = window.setInterval(function() {
-    d.Num1pc = parseFloat(Math.pow(d.u1e,d.u1).toFixed(3));
+    d.Num1pc = Math.pow(d.u1e,d.u1);
 }, 50);
 function incNum1() {
-    d.Num1 = parseFloat((d.Num1 + d.Num1pc).toFixed(3));
-    document.getElementById("Num1").innerHTML = d.Num1 + " Num1";
+    d.Num1 += d.Num1pc;
+    document.getElementById("Num1").innerHTML = parseFloat(d.Num1.toFixed(3)) + " Num1";
 }
 function buyu1() {
     if(d.Num1 >= d.u1c) {
-        d.Num1 -= parseFloat(d.u1c.toFixed(3));
-        d.u1c = parseFloat((d.u1c*1.15).toFixed(3));
-        d.u1 = parseFloat((d.u1 + 1).toFixed(3));
-        document.getElementById("u1a").innerHTML = "Level " + d.u1;
-        document.getElementById("Num1").innerHTML = d.Num1 + " Num1";
-        document.getElementById("u1").innerHTML = "Multiply Num1 gain by " + d.u1e + " (Currently " + d.Num1pc + "/click) Cost:" + d.u1c + "Num1";
+        d.Num1 -= d.u1c;
+        d.u1c *= 1.15;
+        d.u1 += 1;
+        document.getElementById("u1a").innerHTML = "Level " + parseFloat(d.u1.toFixed(3));
+        document.getElementById("Num1").innerHTML = parseFloat(d.Num1.toFixed(3)) + " Num1";
+        document.getElementById("u1").innerHTML = "Multiply Num1 gain by " + parseFloat(d.u1e.toFixed(3)) + " (Currently " + parseFloat(d.Num1pc.toFixed(3)) + "/click) Cost:" + parseFloat(d.u1c.toFixed(3)) + "Num1";
     }
 }
 function buyu2() {
