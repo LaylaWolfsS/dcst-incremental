@@ -49,6 +49,3 @@ var save = JSON.parse(localStorage.getItem("Data"));
 if(save !== null) {
     d = save;
 }
-var effectloop = window.setInterval(function() {
-    d.Num1pc = parseFloat((Math.pow(d.u1e,d.u1)).toFixed(3));
-}, 50);
