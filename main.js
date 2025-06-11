@@ -32,7 +32,6 @@ var showloop = window.setInterval(function() {
 }, 50);
 function incNum1() {
     d.Num1 += d.Num1pc;
-    document.getElementById("Num1").innerHTML = parseFloat(d.Num1.toFixed(3)) + " Num1";
 }
 function buyu1() {
     if(d.Num1 >= d.u1c) {
@@ -40,26 +39,25 @@ function buyu1() {
         d.u1c *= 1.15;
         d.u1 += 1;
         if(s[0] == false) s[0]=true;
-        document.getElementById("u1a").innerHTML = "Level " + parseFloat(d.u1.toFixed(3));
-        document.getElementById("Num1").innerHTML = parseFloat(d.Num1.toFixed(3)) + " Num1";
-        document.getElementById("u1").innerHTML = "Multiply Num1 gain by " + parseFloat(d.u1e.toFixed(3)) + " (Currently " + parseFloat(d.Num1pc.toFixed(3)) + "/click) Cost:" + parseFloat(d.u1c.toFixed(3)) + "Num1";
     }
 }
 function buyu2() {
     if(d.Num1 >= d.u2c) {
         d.Num1 -= parseFloat(d.u2c.toFixed(3));
-        d.u1 = parseFloat((d.u1 + 2).toFixed(3));
-        d.u2c = parseFloat((d.u2c * 2).toFixed(3));
-        d.u2 = parseFloat((d.u2 + 1).toFixed(3));
-        d.u1e = parseFloat((d.u1e + 0.001).toFixed(3));
-        d.u2e = parseFloat((d.u2e + 0.001).toFixed(3));
-        document.getElementById("u2a").innerHTML = "Level " + d.u2;
-        document.getElementById("u2").innerHTML = "Add 0.001 to the base of the first upgrade (Currently +" + d.u2e + ") Cost:" + d.u2c + "Num1";
+        d.u2c *= 2;
+        d.u2 += 1;
+        d.u1e += 0.002;
+        d.u2e += 0.002;
     }
 }
 var loop = window.setInterval(function() {
     incNum1();
-}, 1000);
+    document.getElementById("Num1").innerHTML = parseFloat(d.Num1.toFixed(3)) + " Num1";
+    document.getElementById("u1a").innerHTML = "Level " + parseFloat(d.u1.toFixed(3));
+    document.getElementById("u1").innerHTML = "Multiply Num1 gain by " + parseFloat(d.u1e.toFixed(3)) + " (Currently " + parseFloat(d.Num1pc.toFixed(3)) + "/click) Cost:" + parseFloat(d.u1c.toFixed(3)) + "Num1";
+    document.getElementById("u2a").innerHTML = "Level " + parseFloat(d.u2.toFixed(3));
+    document.getElementById("u2").innerHTML = "Add 0.002 to the base of the first upgrade (Currently +" + parseFloat(d.u2e.toFixed(3)) + ") Cost:" + parseFloat(d.u2c.toFixed(3)) + "Num1";
+}, 50);
 var saveloop = window.setInterval(function() {
     localStorage.setItem("Data", JSON.stringify(d));
 }, 10000);
