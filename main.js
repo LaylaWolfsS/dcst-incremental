@@ -39,6 +39,9 @@ function buyu2() {
         document.getElementById("u2").innerHTML = "Add 0.001 to the base of the first upgrade (Currently +" + d.u2e + ") Cost:" + d.u2c + "Num1";
     }
 }
+var effectloop = window.setInterval(function() {
+    d.Num1pc = parseFloat(Math.pow(d.u1e,d.u1));
+}, 50);
 var loop = window.setInterval(function() {
     incNum1();
 }, 1000);
