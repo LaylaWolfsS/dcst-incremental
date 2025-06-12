@@ -34,7 +34,7 @@ function buyu1() {
         d.Num1 -= d.u1c;
         d.u1c *= d.u1r;
         d.u1 += 1;
-        if(p <= 1) p = 1;
+        if(d.p <= 1) d.p = 1;
     }
 }
 function buyu2() {
@@ -44,7 +44,7 @@ function buyu2() {
         d.u2 += 1;
         d.u1e += 0.004;
         d.u2e += 0.004;
-        if(p <= 2) p = 2;
+        if(d.p <= 2) d.p = 2;
     }
 }
 function buyu3() {
@@ -67,7 +67,7 @@ var loop = window.setInterval(function() {
     document.getElementById("u3").innerHTML = "Divide the scaling of all previous upgrades by 1.01 (Currently /" + parseFloat(d.u3e.toFixed(3)) + ") Cost: " + parseFloat(d.u3c.toFixed(3)) + " Fabric";
 }, 50);
 var showloop = window.setInterval(function() {
-    switch(p) {
+    switch(d.p) {
         case 0: s[0] = false; break;
         case 1: s[0] = true; s[1] = false; break;
         case 2: s[0] = true; s[1] = true; break;
