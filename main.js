@@ -2,7 +2,7 @@ var c = new Array(8);
 for (let ci = 0; ci < c.length; ci++) {
     c[ci] = Math.pow(10, Math.pow(ci,2)+1);
 }
-var s = [false, false, false];
+var s = [false, false, false, false, false];
 // TODO: Rewire this so u1e is its own effect and not the base of u1
 let d = {
     Num1: 0,
@@ -25,22 +25,6 @@ let d = {
 var effectloop = window.setInterval(function() {
     d.Num1pc = Math.pow(d.u1e,d.u1);
     d.u1c = 10*Math.pow(d.u1r,d.u1);
-}, 50);
-var showloop = window.setInterval(function() {
-    switch(p) {
-        case 0: s[0] = false; break;
-        case 1: s[0] = true; s[1] = false; break;
-        case 2: s[0] = true; s[1] = true; break;
-    }
-    for (let si = 0; si < s.length; si++) {
-        if (s[si] == true) {
-            document.getElementById("u" + (si + 2)).style.display = "block";
-            document.getElementById("u" + (si + 2) + "a").style.display = "block";
-        } else {
-            document.getElementById("u" + (si + 2)).style.display = "none";
-            document.getElementById("u" + (si + 2) + "a").style.display = "none";
-        }
-    }
 }, 50);
 function incNum1() {
     d.Num1 += d.Num1pc;
@@ -68,7 +52,8 @@ function buyu3() {
         d.Num1 -= parseFloat(d.u3c.toFixed(3));
         d.u3c *= 2;
         d.u3 += 1;
-        d.u1c /= 1;
+        d.u1r /= 1.01;
+        d.u2r /= 1.01;
     }
 }
 var loop = window.setInterval(function() {
@@ -80,6 +65,22 @@ var loop = window.setInterval(function() {
     document.getElementById("u2").innerHTML = "Add 0.004 to the base of the first upgrade (Currently +" + parseFloat(d.u2e.toFixed(3)) + ") Cost: " + parseFloat(d.u2c.toFixed(3)) + " Fabric";
     document.getElementById("u3a").innerHTML = "Level " + parseFloat(d.u3.toFixed(3));
     document.getElementById("u3").innerHTML = "Divide the scaling of all previous upgrades by 1.01 (Currently /" + parseFloat(d.u3e.toFixed(3)) + ") Cost: " + parseFloat(d.u3c.toFixed(3)) + " Fabric";
+}, 50);
+var showloop = window.setInterval(function() {
+    switch(p) {
+        case 0: s[0] = false; break;
+        case 1: s[0] = true; s[1] = false; break;
+        case 2: s[0] = true; s[1] = true; break;
+    }
+    for (let si = 0; si < s.length; si++) {
+        if (s[si] == true) {
+            document.getElementById("u" + (si + 2)).style.display = "block";
+            document.getElementById("u" + (si + 2) + "a").style.display = "block";
+        } else {
+            document.getElementById("u" + (si + 2)).style.display = "none";
+            document.getElementById("u" + (si + 2) + "a").style.display = "none";
+        }
+    }
 }, 50);
 var saveloop = window.setInterval(function() {
     localStorage.setItem("Data", JSON.stringify(d));
