@@ -5,7 +5,6 @@ for (let ci = 0; ci < c.length; ci++) {
 var s = [false, false, false, false, false];
 // TODO: Rewire this so u1e is its own effect and not the base of u1
 let d = {
-    e: 0,
     Num1: 0,
     Num1pc: 1,
     u1: 0,
@@ -24,8 +23,8 @@ let d = {
     p: 0
 }  
 var effectloop = window.setInterval(function() {
-    d.e = (d.u1e + d.u2e);
-    d.Num1pc = Math.pow(d.e,d.u1);
+    d.u1e = 1.1 + d.u2e;
+    d.Num1pc = Math.pow(d.u1e,d.u1);
     d.u1c = c[0]*Math.pow(d.u1r,d.u1);
     d.u2c = c[1]*Math.pow(d.u2r,d.u2);
 }, 50);
