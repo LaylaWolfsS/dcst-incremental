@@ -19,6 +19,7 @@ let d = {
     u3: 0,
     u3c: c[2],
     u3e: 1,
+    u3r: 2,
     u3s: s[1],
     p: 0
 }  
@@ -26,7 +27,6 @@ var effectloop = window.setInterval(function() {
     d.u1e = 1.1 + d.u2e;
     d.Num1pc = Math.pow(d.u1e,d.u1);
     d.u1c = c[0]*Math.pow(d.u1r,d.u1);
-    if(d.u1 >= 50) d.u1c *= Math.pow(1.2,d.u1-50);
     d.u2c = c[1]*Math.pow(d.u2r,d.u2);
 }, 50);
 function incNum1() {
@@ -38,6 +38,7 @@ function buyu1() {
         d.u1c *= d.u1r;
         d.u1 += 1;
         if(d.p <= 1) d.p = 1;
+        if(d.u1 > 50) d.u1r *= 1.1;
     }
 }
 function buyu2() {
@@ -47,15 +48,17 @@ function buyu2() {
         d.u2 += 1;
         d.u2e += 0.004;
         if(d.p <= 2) d.p = 2;
+        if(d.u2 > 20) d.u2r *= 1.15;
     }
 }
 function buyu3() {
     if(d.Num1 >= d.u3c) {
         d.Num1 -= parseFloat(d.u3c.toFixed(3));
-        d.u3c *= 2;
+        d.u3c *= d.u3r;
         d.u3 += 1;
         d.u1r /= 1.01;
         d.u2r /= 1.01;
+        if(d.u3 > 10) d.u3r *= 1.2;
     }
 }
 var loop = window.setInterval(function() {
