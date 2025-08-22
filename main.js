@@ -101,7 +101,7 @@ function reset1() {
             eval("d.u" + ri + "r = n.r.u" + ri);
             eval("d.u" + ri + "e = n.e.u" + ri);
         }
-        if(l<2) l = 2;
+        if(d.l<2) d.l = 2;
     }
 }
 var loop = window.setInterval(function() {
@@ -116,7 +116,7 @@ var loop = window.setInterval(function() {
     document.getElementById("u4a").innerHTML = "Level " + parseFloat(d.u3.toFixed(3));
     document.getElementById("u4").innerHTML = "Raise Fabric gain to the power of 1.1 (Currently ^" + parseFloat(d.u4e.toFixed(3)) + ") Cost:" + parseFloat(d.u4c.toFixed(3)) + " Fabric";
     if(d.Num1 >= 1000000) document.getElementById("r1").innerHTML = "Reset your Fabric for " + parseFloat((Math.pow(d.Num1/1000000,0.125)).toFixed(3)) + "Quarks"; else document.getElementById("r1").innerHTML = "Reach 1000000 Quarks";
-    document.getElementById("level").innerHTML = n.l[l-1];
+    document.getElementById("level").innerHTML = n.l[d.l-1];
 }, 50);
 var showloop = window.setInterval(function() {
     switch(d.p) {
