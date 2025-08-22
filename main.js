@@ -2,11 +2,12 @@ var c = new Array(8);
 for (let ci = 0; ci < c.length; ci++) {
     c[ci] = Math.pow(10, Math.pow(ci,2)+1);
 }
-var s = [false, false, false, false, false];
-// TODO: Rewire this so u1e is its own effect and not the base of u1
+var s = [false, false, false, false];
+var r = [false];
 let d = {
     Num1: 0,
     Num1pc: 1,
+    Num2: 0,
     u1: 0,
     u1c: c[0],
     u1e: 1.1,
@@ -21,13 +22,20 @@ let d = {
     u3e: 1,
     u3r: 2,
     u3s: s[1],
+    u4: 0,
+    u4c: c[3],
+    u4e: 1.1,
+    u4r: 100,
+    u4s: s[2],
     p: 0
 }  
 var effectloop = window.setInterval(function() {
-    d.u1e = 1.1 + d.u2e;
-    d.Num1pc = Math.pow(d.u1e,d.u1);
+    d.u1e = Math.pow(d.u2e + 1.1,d.u1);
+    d.Num1pc = Math.pow(d.u1e,Math.pow(d.u4e,d.u4));
     d.u1c = c[0]*Math.pow(d.u1r,d.u1);
     d.u2c = c[1]*Math.pow(d.u2r,d.u2);
+    d.u3c = c[2]*Math.pow(d.u3r,d.u3);
+    d.u4c = c[3]*Math.pow(d.u4r,d.u4);
 }, 50);
 function incNum1() {
     d.Num1 += d.Num1pc;
@@ -38,7 +46,7 @@ function buyu1() {
         d.u1c *= d.u1r;
         d.u1 += 1;
         if(d.p <= 1) d.p = 1;
-        if(d.u1 > 50) d.u1r *= 1.1;
+        if(d.u1 > 50) d.u1r *= 1.01;
     }
 }
 function buyu2() {
@@ -48,7 +56,7 @@ function buyu2() {
         d.u2 += 1;
         d.u2e += 0.004;
         if(d.p <= 2) d.p = 2;
-        if(d.u2 > 20) d.u2r *= 1.15;
+        if(d.u2 > 12) d.u2r *= 1.015;
     }
 }
 function buyu3() {
@@ -58,12 +66,32 @@ function buyu3() {
         d.u3 += 1;
         d.u1r /= 1.01;
         d.u2r /= 1.01;
-        if(d.u3 > 10) d.u3r *= 1.2;
+        d.u3e *= parseFloat(d.u3e.toFixed(3));
+        if(d.p <= 3) d.p = 3;
+        if(d.u3 > 10) d.u3r *= 1.02;
+    }
+}
+function buyu4() {
+    if(d.Num1 >= d.u4c) {
+        d.Num1 -= parseFloat(d.u4c.toFixed(3));
+        d.u4 += 1;
+        d.u4c *= d.u4r;
+        d.u4e += parseFloat(d.u4e.toFixed(3));
+        if(d.p <= 4) d.p = 4;
+        if(d.u4 > 5) d.u3r *= 1.02
+    }
+}
+function reset1(n) {
+    if(d.Num1 >= 100000000) {
+        d.Num2 = Math.pow(d.Num1/100000000,0.125);
+        d.Num1 = 0;
+        d.p = 0;
+        u1 = 0; 
     }
 }
 var loop = window.setInterval(function() {
     incNum1();
-    document.getElementById("Num1").innerHTML = "You have" + parseFloat(d.Num1.toFixed(3)) + " Fabric";
+    document.getElementById("Num1").innerHTML = "You have " + parseFloat(d.Num1.toFixed(3)) + " Fabric";
     document.getElementById("u1a").innerHTML = "Level " + parseFloat(d.u1.toFixed(3));
     document.getElementById("u1").innerHTML = "Multiply Fabric gain by " + parseFloat(d.u1e.toFixed(3)) + " (Currently " + parseFloat(d.Num1pc.toFixed(3)) + "/tick) Cost: " + parseFloat(d.u1c.toFixed(3)) + " Fabric";
     document.getElementById("u2a").innerHTML = "Level " + parseFloat(d.u2.toFixed(3));
@@ -75,7 +103,9 @@ var showloop = window.setInterval(function() {
     switch(d.p) {
         case 0: s[0] = false; break;
         case 1: s[0] = true; s[1] = false; break;
-        case 2: s[0] = true; s[1] = true; break;
+        case 2: s[1] = true; s[2] = false; break;
+        case 3: s[2] = true; r[0] = false; break;
+        case 4: r[0] = true; break;
     }
     for (let si = 0; si < s.length; si++) {
         if (s[si] == true) {
@@ -84,6 +114,13 @@ var showloop = window.setInterval(function() {
         } else {
             document.getElementById("u" + (si + 2)).style.display = "none";
             document.getElementById("u" + (si + 2) + "a").style.display = "none";
+        }
+    }
+    for (let ri = 0; ri < r.length; ri++) {
+        if (r[ri] == true) {
+            document.getElementById("r" + (ri+1)).style.display = "block";
+        } else {
+            document.getElementById("r" + (ri + 1)).style.display = "none";
         }
     }
 }, 50);
