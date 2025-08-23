@@ -13,17 +13,30 @@
         <p id="Num1" class="p1 Fabric">You have 0 Fabric</p>
         <p id="Num2" class="p1 Quarks"> You have 0 Quarks</p>
         <br> <br>
-        <button id="t1" class="t" onclick="close(2); open(1)">Fabric</button> 
-        <button id="t2" class="t" onclick="close(1); open(2)">Quarks</button>
+        <button id="t1" class="t" onclick="close(1); open(0)">Fabric</button> 
+        <button id="t2" class="t" onclick="close(0); open(1)">Quarks</button>
         <br>
-        <p id="u1a" class="p1 Fabric"> Level 0</p>
-        <button onclick="buyu1()" id="u1" class="b1 Fabric">Multiply Fabric gain by 1.1 (Currently 1/tick) Cost: 10 Fabric</button>
-        <p id="u2a" class="p1 Fabric"> Level 0</p>
-        <button onclick="buyu2()" id="u2" class="b1 Fabric">Add 0.004 to the base of the first upgrade (Currently +0.000) Cost: 100 Fabric</button>
-        <p id="u3a" class="p1 Fabric"> Level 0</p>
-        <button onclick="buyu3()" id="u3" class="b1 Fabric">Divide the scaling of all previous upgrades by 1.01 (Currently /1.000) Cost: 100000 Fabric</button>
-        <p id="u4a" class="p1 Fabric"> Level 0</p>
-        <button onclick="buyu4()" id="u4" class="b1 Fabric">Raise Fabric gain to the power of 1.1 (Currently ^1.000) Cost: 10000000</button>
-        <button onclick="reset1()" id="r1" class="b1 Fabric">Reset your Fabric for 0.000 Quarks</button>
+
+        <div class="Fabric">
+            <p id="u1a" class="p1"> Level 0</p>
+            <button onclick="buyu1()" id="u1" class="b1">Multiply Fabric gain by 1.1 (Currently 1/tick) Cost: 10 Fabric</button>
+            <p id="u2a" class="p1"> Level 0</p>
+            <button onclick="buyu2()" id="u2" class="b1">Add 0.004 to the base of the first upgrade (Currently +0.000) Cost: 100 Fabric</button>
+            <p id="u3a" class="p1"> Level 0</p>
+            <button onclick="buyu3()" id="u3" class="b1">Divide the scaling of all previous upgrades by 1.01 (Currently /1.000) Cost: 100000 Fabric</button>
+            <p id="u4a" class="p1"> Level 0</p>
+            <button onclick="buyu4()" id="u4" class="b1">Raise Fabric gain to the power of 1.1 (Currently ^1.000) Cost: 10000000</button>
+            <button onclick="reset1()" id="r1" class="b1">Reset your Fabric for 0.000 Quarks</button>
+            <p id="sc1" class="p1"> Because of your excess Fabric, Fabric gain is raised ^1.000!</p>
+        </div>
+
+        <div class="Quarks">
+            <p id="q1" class="p2">You have 0 Up Quarks (next at 1 Quarks)</p>
+            <p id="q2" class="p2">You have 0 Down Quarks (next at 2 Quarks)</p>
+            <p id="q3" class="p2">You have 0 Top Quarks (next at 3 Quarks)</p>
+            <p id="q4" class="p2">You have 0 Bottom Quarks (next at 4 Quarks)</p>
+            <p id="q5" class="p2">You have 0 Charm Quarks (next at 5 Quarks)</p>
+            <p id="q6" class="p2">You have 0 Strange Quarks (next at 6 Quarks)</p>
+        </div>
     </body>
 </html>

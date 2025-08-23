@@ -18,7 +18,7 @@ const n = {
     }
 }
 var s = [false, false, false, false];
-var r = [false];
+var r = [true, false];
 let d = {
     l: 1,
     Num1: 0,
@@ -43,16 +43,36 @@ let d = {
     u4e: 1,
     u4r: 100,
     u4s: s[2],
+    sc1: 1,
+    sc1s: 1000000,
+    q: {
+        q1: 0,
+        q2: 0,
+        q3: 0,
+        q4: 0,
+        q5: 0,
+        q6: 0
+    },
     p: 0
 }  
 var effectloop = window.setInterval(function() {
-    d.u1e = Math.pow(d.u2e + 1.1,d.u1);
-    d.Num1r = Math.pow(d.u1e,Math.pow(d.u4e,d.u4));
-    d.u1c = c[0]*Math.pow(d.u1r,d.u1);
-    d.u2c = c[1]*Math.pow(d.u2r,d.u2);
+    d.u4e = Math.pow(1.1,d.u4);
+    d.u3e = Math.pow(1.01,d.u3 + 5 * d.q.q2);
+    d.u2e = (0.004 * d.u2e + 3 * d.q.q3);
+    d.u1e = Math.pow(d.u2e + 1.1,d.u1 + 4 * d.q.q1);
+    d.Num1r = Math.pow(Math.pow(d.u1e,Math.pow(d.u4e,d.u4)),d.sc1);
+    d.u1c = c[0]*Math.pow(d.u1r,d.u1)/d.u3e;
+    d.u2c = c[1]*Math.pow(d.u2r,d.u2)/d.u3e;
     d.u3c = c[2]*Math.pow(d.u3r,d.u3);
     d.u4c = c[3]*Math.pow(d.u4r,d.u4);
 }, 50);
+function softcap() {
+    if(d.Num1 > d.sc1s) {
+        d.sc1 = Math.pow(d.sc1s/d.Num1,0.5);
+    } else {
+        d.sc1 = 1;
+    }
+}
 function buyu1() {
     if(d.Num1 >= d.u1c) {
         d.Num1 -= d.u1c;
@@ -92,7 +112,7 @@ function buyu4() {
 }
 function reset1() {
     if(d.Num1 >= 1000000) {
-        d.Num2 = Math.pow(d.Num1/1000000,0.125);
+        d.Num2 = Math.pow(d.Num1/1000000,0.25);
         d.Num1 = 0;
         d.p = 0;
         for(let ri = 1; ri < 5; ri++) {
@@ -101,11 +121,12 @@ function reset1() {
             eval("d.u" + ri + "r = n.r.u" + ri);
             eval("d.u" + ri + "e = n.e.u" + ri);
         }
-        if(d.l<2) d.l = 2;
+        if(d.l < 2) d.l = 2;
     }
 }
 var loop = window.setInterval(function() {
     d.Num1 += d.Num1r;
+    document.getElementById("sc1").innerHTML = "Because of your excess Fabric, Fabric gain is raised ^" + parseFloat(d.sc1.toFixed(3)) + "!";
     document.getElementById("Num1").innerHTML = "You have " + parseFloat(d.Num1.toFixed(3)) + " Fabric";
     document.getElementById("u1a").innerHTML = "Level " + parseFloat(d.u1.toFixed(3));
     document.getElementById("u1").innerHTML = "Multiply Fabric gain by " + parseFloat((d.u2e + 1.1).toFixed(3)) + " (Currently " + parseFloat((d.Num1r*20).toFixed(3)) + "/sec) Cost: " + parseFloat(d.u1c.toFixed(3)) + " Fabric";
@@ -113,9 +134,9 @@ var loop = window.setInterval(function() {
     document.getElementById("u2").innerHTML = "Add 0.004 to the base of the first upgrade (Currently +" + parseFloat(d.u2e.toFixed(3)) + ") Cost: " + parseFloat(d.u2c.toFixed(3)) + " Fabric";
     document.getElementById("u3a").innerHTML = "Level " + parseFloat(d.u3.toFixed(3));
     document.getElementById("u3").innerHTML = "Divide the scaling of all previous upgrades by 1.01 (Currently /" + parseFloat(d.u3e.toFixed(3)) + ") Cost: " + parseFloat(d.u3c.toFixed(3)) + " Fabric";
-    document.getElementById("u4a").innerHTML = "Level " + parseFloat(d.u3.toFixed(3));
+    document.getElementById("u4a").innerHTML = "Level " + parseFloat(d.u4.toFixed(3));
     document.getElementById("u4").innerHTML = "Raise Fabric gain to the power of 1.1 (Currently ^" + parseFloat(d.u4e.toFixed(3)) + ") Cost:" + parseFloat(d.u4c.toFixed(3)) + " Fabric";
-    if(d.Num1 >= 1000000) document.getElementById("r1").innerHTML = "Reset your Fabric for " + parseFloat((Math.pow(d.Num1/1000000,0.125)).toFixed(3)) + "Quarks"; else document.getElementById("r1").innerHTML = "Reach 1000000 Quarks";
+    if(d.Num1 >= 1000000) document.getElementById("r1").innerHTML = "Reset your Fabric for " + parseFloat((Math.pow(d.Num1/1000000,0.125)).toFixed(3)) + "Quarks"; else document.getElementById("r1").innerHTML = "Reach 1000000 Fabric";
     document.getElementById("level").innerHTML = n.l[d.l-1];
 }, 50);
 var showloop = window.setInterval(function() {
@@ -138,8 +159,10 @@ var showloop = window.setInterval(function() {
     for (let ri = 0; ri < r.length - 1; ri++) {
         if (r[ri] == true) {
             document.getElementById("r" + (ri + 1)).style.display = "block";
+            document.getElementById("Num" + (ri + 1)).style.display = "block";
         } else {
             document.getElementById("r" + (ri + 1)).style.display = "none";
+            document.getElementById("Num" + (ri + 1)).style.display = "none";
         }
     }
 }, 50);
