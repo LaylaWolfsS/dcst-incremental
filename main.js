@@ -139,8 +139,7 @@ var loop = window.setInterval(function() {
     if(d.Num1 >= 1000000) document.getElementById("r1").innerHTML = "Reset your Fabric for " + parseFloat((Math.pow(d.Num1/1000000,0.125)).toFixed(3)) + "Quarks"; else document.getElementById("r1").innerHTML = "Reach 1000000 Fabric";
     document.getElementById("level").innerHTML = n.l[d.l-1];
 }, 50);
-var showloop = window.setInterval(function() {
-    switch(d.p) {
+switch(d.p) {
         case 0: s[0] = false; break;
         case 1: s[0] = true; s[1] = false; break;
         case 2: s[1] = true; s[2] = false; break;
@@ -165,7 +164,6 @@ var showloop = window.setInterval(function() {
             document.getElementById("Num" + (ri + 1)).style.display = "none";
         }
     }
-}, 50);
 var saveloop = window.setInterval(function() {
     localStorage.setItem("Data", JSON.stringify(d));
 }, 10000);
