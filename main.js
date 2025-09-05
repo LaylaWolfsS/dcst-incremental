@@ -127,7 +127,7 @@ function reset1() {
 }
 var loop = window.setInterval(function() {
     d.Num1 += d.Num1r;
-    if(tn = "Fabric") {
+    if(tn == "Fabric") {
         document.getElementById("Num1").innerHTML = "You have " + parseFloat(d.Num1.toFixed(3)) + " Fabric";
         document.getElementById("u1a").innerHTML = "Level " + parseFloat(d.u1.toFixed(3));
         document.getElementById("u1").innerHTML = "Multiply Fabric gain by " + parseFloat((d.u2e + 1.1).toFixed(3)) + " (Currently " + parseFloat((d.Num1r*20).toFixed(3)) + "/sec) Cost: " + parseFloat(d.u1c.toFixed(3)) + " Fabric";
